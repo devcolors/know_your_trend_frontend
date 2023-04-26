@@ -38,7 +38,7 @@ function App() {
 
       <div>
         <LoadingBar
-          color='#f11946'
+          color='blue'
           progress={progress}
           onLoaderFinished={() => setProgress(0)}
         />
