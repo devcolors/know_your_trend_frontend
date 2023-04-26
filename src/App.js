@@ -21,7 +21,7 @@ function App() {
       setProgress(counter)
     }, 100);
 
-    fetch(`http://localhost:8000/${ticker}`)
+    fetch(`https://know-your-trend.herokuapp.com/${ticker}`)
     .then(response => response.json())
     .then(responsejson => {
       if (responsejson["message"].includes("error getting mboum finance response")) setResponse("Unfortunately, that ticker is not supported yet. Please try another :)")
