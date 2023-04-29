@@ -7,7 +7,25 @@ function App() {
   const [query, setQuery] = useState("")
   const [response, setResponse] = useState("Search for a stock ticker")
   const [progress, setProgress] = useState(0)
+  const mobile = window.innerWidth < 768
   let counter = 0
+
+  console.log(window.innerWidth, mobile)
+
+  function getButtons() {
+    return (
+      <div className='buttongroup'>
+          <button className="resetbutton" onClick={() => {
+          setResponse("Search for a stock ticker")
+          setQuery("")
+          setProgress(0)
+        }}>Reset</button>
+        <button className="resetbutton" onClick={() => {
+          makeApiCall(query)
+        }}>Search</button>
+      </div>
+    )
+  }
 
   function makeApiCall(ticker) {
     setResponse("Loading...")
@@ -49,14 +67,7 @@ function App() {
       
       <div className="searchandreset">
         <input type="text" placeHolder="Search..." className="search" onChange={e => setQuery(e.target.value)}/>
-        <button className="resetbutton" onClick={() => {
-          setResponse("Search for a stock ticker")
-          setQuery("")
-          setProgress(0)
-        }}>Reset</button>
-        <button className="resetbutton" onClick={() => {
-          makeApiCall(query)
-        }}>Search</button>
+        {mobile ? null : getButtons()}
       </div>
       <br/><br/>
 
@@ -68,6 +79,7 @@ function App() {
             .map((ticker) => (
                 <li key={ticker.Symbol} className="listItem" onClick={() => makeApiCall(ticker.Symbol)}>{ticker.Symbol} - {ticker["Company Name"]}</li>            
             ))
+            .slice(0, mobile ? 5 : 10)
         }
       </ul>
 
