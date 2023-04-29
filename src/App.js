@@ -52,7 +52,7 @@ function App() {
   return (
     <div className="app"> 
 
-      <h2>Know Your Trend</h2> <br/>
+      <h2><a href='https://know-your-trend-frontend.pages.dev/'>Know Your Trend</a></h2> <br/>
 
       <div>
         <LoadingBar
